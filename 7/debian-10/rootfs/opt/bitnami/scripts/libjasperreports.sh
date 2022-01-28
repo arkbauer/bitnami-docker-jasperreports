@@ -280,6 +280,9 @@ jasperreports_initialize() {
                 # Add a new prop node with mail.smtp.startls.enable=true
                 xmlstarlet ed -L --subnode '//*[name()="property" and @name="javaMailProperties"]/*[name()="props"]' --type elem -n "prop" -v "true" "${JASPERREPORTS_BASE_DIR}/WEB-INF/applicationContext-report-scheduling.xml"
                 xmlstarlet ed -L -i '//*[name()="prop" and not(@key)]' --type "attr" -n "key" -v "mail.smtp.starttls.enable" "${JASPERREPORTS_BASE_DIR}/WEB-INF/applicationContext-report-scheduling.xml"
+                # add a new prop node with mail.smtp.ssl.protocols=TLSv1.2
+                xmlstarlet ed -L --subnode '//*[name()="property" and @name="javaMailProperties"]/*[name()="props"]' --type elem -n "prop" -v "TLSv1.2" "${JASPERREPORTS_BASE_DIR}/WEB-INF/applicationContext-report-scheduling.xml"
+                xmlstarlet ed -L -i '//*[name()="prop" and not(@key)]' --type "attr" -n "key" -v "mail.smtp.ssl.protocols" "${JASPERREPORTS_BASE_DIR}/WEB-INF/applicationContext-report-scheduling.xml"
             fi
 
         else
